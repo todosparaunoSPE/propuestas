@@ -7,31 +7,9 @@ Created on Fri Mar 21 09:10:09 2025
 
 import streamlit as st
 import base64
-import os  # Para verificar si los archivos existen
 
-# Estilo de fondo
-page_bg_img = """
-<style>
-[data-testid="stAppViewContainer"] {
-    background:
-    radial-gradient(black 15%, transparent 16%) 0 0,
-    radial-gradient(black 15%, transparent 16%) 8px 8px,
-    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-    radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-    background-color:#282828;
-    background-size:16px 16px;
-}
-</style>
-"""
-
-st.markdown(page_bg_img, unsafe_allow_html=True)
-
-# Función para mostrar el PDF
+# Función para mostrar el PDF en pantalla completa
 def show_pdf(pdf_file):
-    if not os.path.exists(pdf_file):
-        st.error(f"Error: No se encontró el archivo `{pdf_file}`.")
-        return
-    
     with open(pdf_file, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode("utf-8")
     
@@ -58,25 +36,38 @@ st.markdown("""
 st.header("Introducción")
 st.markdown("""
 <div class="intro-text">
-En un entorno cada vez más competitivo y tecnológicamente avanzado, la innovación y la mejora continua se han convertido en pilares fundamentales para el éxito de las organizaciones...
+En un entorno cada vez más competitivo y tecnológicamente avanzado, la innovación y la mejora continua se han convertido en pilares fundamentales para el éxito de las organizaciones. En este contexto, AFORE PENSIONISSSTE tiene la oportunidad de posicionarse como un referente en el sector financiero, no solo a través de la implementación de tecnologías de vanguardia, sino también mediante la adopción de una cultura organizacional que fomente la creatividad, la colaboración y el liderazgo proactivo.
+
+Esta propuesta surge como resultado de un análisis exhaustivo de las necesidades actuales de la institución, así como de las tendencias globales en inteligencia artificial, gestión de calidad e innovación. A lo largo de este documento, se presentan estrategias y soluciones que no solo buscan optimizar los procesos internos y mejorar la experiencia del afiliado, sino que también están diseñadas para fortalecer la posición de AFORE PENSIONISSSTE como una institución líder en el sector.
+
+Es importante destacar que la elaboración de esta propuesta ha requerido un esfuerzo colaborativo y multidisciplinario, en el que se han integrado conocimientos técnicos, experiencia operativa y una visión estratégica alineada con los objetivos institucionales. Este trabajo refleja no solo un compromiso con la excelencia, sino también una clara intención de contribuir al crecimiento y desarrollo de la organización, asegurando que cada iniciativa propuesta esté respaldada por un enfoque práctico y resultados medibles.
+
+Con esta propuesta, se busca no solo impulsar la transformación tecnológica y operativa de AFORE PENSIONISSSTE, sino también reconocer y potenciar el talento interno que, con dedicación y visión, está dispuesto a asumir nuevos desafíos y responsabilidades para llevar a la institución hacia un futuro más competitivo y sostenible.
 </div>
 """, unsafe_allow_html=True)
 
 # Sidebar para los botones y detalles adicionales
 st.sidebar.header("Selecciona un PDF")
 
-# Opciones en el sidebar
-pdf_option = st.sidebar.radio("Selecciona un PDF:", {
-    "PDF 1": "propuesta_1.pdf",
-    "PDF 2": "propuesta_2.pdf",
-    "PDF 3": "propuesta_3.pdf"
-})
+# Botones para seleccionar el PDF
+pdf_option = st.sidebar.radio("Selecciona un PDF:", ("PDF 1", "PDF 2", "PDF 3"))
+
+# Contenedor para el PDF (inicialmente oculto)
+pdf_container = st.empty()
 
 # Botón para mostrar el PDF
 if st.sidebar.button("Mostrar PDF"):
-    show_pdf(pdf_option)
+    if pdf_option == "PDF 1":
+        with pdf_container:
+            show_pdf("propuesta_1.pdf")
+    elif pdf_option == "PDF 2":
+        with pdf_container:
+            show_pdf("propuesta_2.pdf")
+    elif pdf_option == "PDF 3":
+        with pdf_container:
+            show_pdf("propuesta_3.pdf")
 
 # Agregar tu nombre y copyright en el sidebar
-st.sidebar.markdown("---")  
+st.sidebar.markdown("---")  # Separador visual
 st.sidebar.markdown("**Desarrollado por:** Javier Horacio Pérez Ricárdez")
 st.sidebar.markdown("**© 2024 Todos los derechos reservados**")
