@@ -12,12 +12,9 @@ import base64
 def show_pdf(pdf_file):
     with open(pdf_file, "rb") as f:
         base64_pdf = base64.b64encode(f.read()).decode("utf-8")
-    
-    # PDF en pantalla completa
     pdf_display = f"""
     <iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="900px" type="application/pdf"></iframe>
     """
-    
     st.markdown(pdf_display, unsafe_allow_html=True)
 
 # Título de la aplicación
@@ -49,23 +46,24 @@ Con esta propuesta, se busca no solo impulsar la transformación tecnológica y 
 # Sidebar para los botones y detalles adicionales
 st.sidebar.header("Selecciona un PDF")
 
+# Rutas de los PDFs en la carpeta static
+pdf_files = {
+    "PDF 1": "static/propuesta_1.pdf",
+    "PDF 2": "static/propuesta_2.pdf",
+    "PDF 3": "static/propuesta_3.pdf"
+}
+
 # Botones para seleccionar el PDF
-pdf_option = st.sidebar.radio("Selecciona un PDF:", ("PDF 1", "PDF 2", "PDF 3"))
+pdf_option = st.sidebar.radio("Selecciona un PDF:", list(pdf_files.keys()))
 
 # Contenedor para el PDF (inicialmente oculto)
 pdf_container = st.empty()
 
 # Botón para mostrar el PDF
 if st.sidebar.button("Mostrar PDF"):
-    if pdf_option == "PDF 1":
-        with pdf_container:
-            show_pdf("propuesta_1.pdf")
-    elif pdf_option == "PDF 2":
-        with pdf_container:
-            show_pdf("propuesta_2.pdf")
-    elif pdf_option == "PDF 3":
-        with pdf_container:
-            show_pdf("propuesta_3.pdf")
+    pdf_file = pdf_files[pdf_option]
+    with pdf_container:
+        show_pdf(pdf_file)
 
 # Agregar tu nombre y copyright en el sidebar
 st.sidebar.markdown("---")  # Separador visual
