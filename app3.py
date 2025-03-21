@@ -26,7 +26,7 @@ st.sidebar.header("Selecciona un PDF")
 # URLs de los PDFs en GitHub (reemplaza con tus URLs reales)
 pdf_urls = {
     "PDF 1": "https://pdfhost.io/v/ntKGBHFecn_propuesta_1",
-    "PDF 2": "https://pdfhost.io/v/E6DBtaUzzE_propuesta_2",
+    "PDF 2": "https://pdfhost.io/v/GfH8uDQHMM_propuesta_2",
     "PDF 3": "https://pdfhost.io/v/k7hbXcwaEE_propuesta_3"
 }
 
