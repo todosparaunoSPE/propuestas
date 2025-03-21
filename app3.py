@@ -31,9 +31,9 @@ st.sidebar.header("Selecciona un PDF")
 
 # URLs de los PDFs en pdfhost.io (reemplaza con tus URLs reales)
 pdf_urls = {
-    "PDF 1": "https://pdfhost.io/v/ntKGBHFecn_propuesta_1",
-    "PDF 2": "https://pdfhost.io/v/GfH8uDQHMM_propuesta_2",
-    "PDF 3": "https://pdfhost.io/v/k7hbXcwaEE_propuesta_3"
+    "PDF 1": "https://pdfhost.io/v/aQU5jk3khy_propuesta_1",
+    "PDF 2": "https://pdfhost.io/v/yQHJsxvhA2_propuesta_2",
+    "PDF 3": "https://pdfhost.io/v/Yt2brcpjCZ_propuesta_3"
 }
 
 # Mostrar enlaces en el sidebar
