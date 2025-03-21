@@ -1,17 +1,28 @@
 import streamlit as st
 
 
-# Estilo de fondo
+# Aplicar el nuevo fondo
 page_bg_img = """
 <style>
-[data-testid="stAppViewContainer"]{
-background:
-radial-gradient(black 15%, transparent 16%) 0 0,
-radial-gradient(black 15%, transparent 16%) 8px 8px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
-radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
-background-color:#282828;
-background-size:16px 16px;
+[data-testid="stAppViewContainer"] {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+[data-testid="stSidebar"] {
+    background: rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(10px);
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+[data-testid="stHeader"] {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+[data-testid="stToolbar"] {
+    right: 2rem;
+}
 </style>
 """
 
