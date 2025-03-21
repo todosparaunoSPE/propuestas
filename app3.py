@@ -7,11 +7,16 @@ Created on Fri Mar 21 09:10:09 2025
 
 import streamlit as st
 import base64
+import requests
+
+# Función para descargar un archivo PDF desde una URL
+def download_pdf(url):
+    response = requests.get(url)
+    return response.content
 
 # Función para mostrar el PDF en pantalla completa
-def show_pdf(pdf_file):
-    with open(pdf_file, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode("utf-8")
+def show_pdf(pdf_content):
+    base64_pdf = base64.b64encode(pdf_content).decode("utf-8")
     pdf_display = f"""
     <iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="900px" type="application/pdf"></iframe>
     """
@@ -46,24 +51,25 @@ Con esta propuesta, se busca no solo impulsar la transformación tecnológica y 
 # Sidebar para los botones y detalles adicionales
 st.sidebar.header("Selecciona un PDF")
 
-# Rutas de los PDFs en la carpeta static
-pdf_files = {
-    "PDF 1": "static/propuesta_1.pdf",
-    "PDF 2": "static/propuesta_2.pdf",
-    "PDF 3": "static/propuesta_3.pdf"
+# URLs de los PDFs en GitHub (reemplaza con tus URLs reales)
+pdf_urls = {
+    "PDF 1": "https://github.com/todosparaunoSPE/propuestas/blob/main/propuesta_1.pdf",
+    "PDF 2": "https://github.com/todosparaunoSPE/propuestas/blob/main/propuesta_2.pdf",
+    "PDF 3": "https://github.com/todosparaunoSPE/propuestas/blob/main/propuesta_3.pdf"
 }
 
 # Botones para seleccionar el PDF
-pdf_option = st.sidebar.radio("Selecciona un PDF:", list(pdf_files.keys()))
+pdf_option = st.sidebar.radio("Selecciona un PDF:", list(pdf_urls.keys()))
 
 # Contenedor para el PDF (inicialmente oculto)
 pdf_container = st.empty()
 
 # Botón para mostrar el PDF
 if st.sidebar.button("Mostrar PDF"):
-    pdf_file = pdf_files[pdf_option]
+    pdf_url = pdf_urls[pdf_option]
+    pdf_content = download_pdf(pdf_url)
     with pdf_container:
-        show_pdf(pdf_file)
+        show_pdf(pdf_content)
 
 # Agregar tu nombre y copyright en el sidebar
 st.sidebar.markdown("---")  # Separador visual
