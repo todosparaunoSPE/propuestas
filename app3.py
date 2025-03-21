@@ -1,34 +1,54 @@
 import streamlit as st
 
-
-# Aplicar el nuevo fondo
+# Estilo de fondo personalizado
 page_bg_img = """
 <style>
 [data-testid="stAppViewContainer"] {
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background-color: rgb(98, 17, 50);
     background-size: cover;
     background-attachment: fixed;
 }
 
 [data-testid="stSidebar"] {
-    background: rgba(255, 255, 255, 0.1) !important;
-    backdrop-filter: blur(10px);
-    border-right: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: rgb(184, 151, 90) !important;
+    color: white;  /* Color del texto en el sidebar */
 }
 
 [data-testid="stHeader"] {
-    background: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 
 [data-testid="stToolbar"] {
     right: 2rem;
 }
+
+/* Ajustes para el texto en el sidebar */
+[data-testid="stSidebar"] h1,
+[data-testid="stSidebar"] h2,
+[data-testid="stSidebar"] h3,
+[data-testid="stSidebar"] p,
+[data-testid="stSidebar"] label,
+[data-testid="stSidebar"] a {
+    color: white !important;
+}
+
+/* Ajustes para los botones en el sidebar */
+[data-testid="stSidebar"] .stButton button {
+    background-color: rgb(98, 17, 50);
+    color: white;
+    border: 1px solid white;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+}
+
+[data-testid="stSidebar"] .stButton button:hover {
+    background-color: rgb(128, 47, 80);
+    border-color: rgb(184, 151, 90);
+}
 </style>
 """
 
 st.markdown(page_bg_img, unsafe_allow_html=True)
-
-
 
 # Título de la aplicación
 st.title("Visualizador de Propuestas para AFORE PENSIONISSSTE")
@@ -39,6 +59,7 @@ st.markdown("""
 .intro-text {
     text-align: justify;
     font-size: 18px;
+    color: white;  /* Color del texto en el contenido principal */
 }
 </style>
 """, unsafe_allow_html=True)
@@ -59,7 +80,7 @@ Con esta propuesta, se busca no solo impulsar la transformación tecnológica y 
 # Sidebar para los enlaces y detalles adicionales
 st.sidebar.header("Selecciona un PDF")
 
-# URLs de los PDFs en pdfhost.io (reemplaza con tus URLs reales)
+# URLs de los PDFs (reemplaza con tus URLs reales)
 pdf_urls = {
     "PDF 1": "https://pdfhost.io/v/aQU5jk3khy_propuesta_1",
     "PDF 2": "https://pdfhost.io/v/yQHJsxvhA2_propuesta_2",
@@ -69,7 +90,7 @@ pdf_urls = {
 # Mostrar enlaces en el sidebar
 st.sidebar.markdown("### Enlaces a los PDFs:")
 for pdf_name, pdf_url in pdf_urls.items():
-    st.sidebar.markdown(f'<a href="{pdf_url}" target="_blank">{pdf_name}</a>', unsafe_allow_html=True)
+    st.sidebar.markdown(f'<a href="{pdf_url}" target="_blank" style="color: white; text-decoration: none;">{pdf_name}</a>', unsafe_allow_html=True)
 
 # Agregar tu nombre y copyright en el sidebar
 st.sidebar.markdown("---")  # Separador visual
